@@ -11,27 +11,50 @@ function getComputerChoice() {
   }
 }
 
-console.log(getComputerChoice());
-
 // Get human choice for Rock Paper or Scissors
 function getHumanChoice() {
   const choice = prompt('Pick: Rock, Paper, or Scissors').trim().toLowerCase();
-  const choiceFixed = choice[0].toUpperCase() + choice.slice(1);
 
   if (choice === 'rock' || choice === 'paper' || choice === 'scissors') {
-    return choiceFixed;
+    return choice;
   } else {
     console.log('Not valid choice. Please pick Rock, Paper, or Scissors');
     return;
   }
 }
 
-console.log(getHumanChoice());
-
-// Keep track of players score
-let humanScore = 0;
-let computerScore = 0;
-
-// Take computer and human choice and compare
-function playRound(humanChocie, computerChoice) {}
 // Keep track of score and declare winner
+function playGame() {
+  // Keep track of players score
+  let humanScore = 0;
+  let computerScore = 0;
+
+  // Take computer and human choice and compare
+  function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+      console.log(`It's a tie! Both picked ${humanChoice[0].toUpperCase() + humanChoice.slice(1)}}`);
+    } else if (
+      (humanChoice === 'rock' && computerChoice === 'scissors') ||
+      (humanChoice === 'paper' && computerChoice === 'rock') ||
+      (humanChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+      console.log(
+        `You win! ${humanChoice[0].toUpperCase() + humanChoice.slice(1)} beats ${
+          computerChoice[0].toUpperCase() + computerChoice.slice(1)
+        }`
+      );
+      humanScore++;
+    } else {
+      console.log(
+        `You lose! ${computerChoice[0].toUpperCase() + computerChoice.slice(1)} beats ${
+          humanChoice[0].toUpperCase() + humanChoice.slice(1)
+        }`
+      );
+      computerScore++;
+    }
+  }
+
+  const humanSelection = getHumanChoice();
+  const computerSelection = getComputerChoice();
+  playRound(humanSelection, computerSelection);
+}
