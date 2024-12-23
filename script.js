@@ -14,5 +14,17 @@ function getComputerChoice() {
 console.log(getComputerChoice());
 
 // Get human choice for Rock Paper or Scissors
+function getHumanChoice() {
+  const choice = prompt('Pick: Rock, Paper, or Scissors').trim();
+  const choiceFixed = choice[0].toUpperCase() + choice.slice(1);
+  return choiceFixed;
+}
+
+console.log(getHumanChoice());
+
+// Keep track of players score
+let humanScore = 0;
+let computerScore = 0;
+
 // Take computer and human choice and compare
 // Keep track of score and declare winner
